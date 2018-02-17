@@ -1,1 +1,86 @@
-.font-patua{font-family:Patua One,cursive}.font-cabin{font-family:Cabin,sans-serif}.font-raleway{font-family:Raleway,sans-serif}.text-size-xl{font-size:50px}.text-size-l{font-size:30px}.text-black{color:#000}.text-white{color:#fff}.text-dark-grey{color:#2b292b}.text-grey{color:#696469}.text-light-grey{color:#f5e6f5}.text-dark-violet{color:#492549}.text-light-violet{color:#7d407d}.link:hover{color:inherit;text-decoration:none}.bg-black{color:#000}.bg-white{color:#fff}.bg-dark-grey{color:#2b292b}.bg-grey{color:#696469}.bg-light-grey{color:#f5e6f5}.bg-dark-violet{color:#492549}.bg-light-violet{color:#7d407d}.site-navbar{border:.3px solid hsla(0,0%,78%,.5);border-radius:15px}
+.font-patua {
+  font-family: 'Patua One', cursive;
+}
+
+.font-cabin {
+  font-family: 'Cabin', sans-serif;
+}
+
+.font-raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.text-size-xl {
+  font-size: 50px;
+}
+
+.text-size-l {
+  font-size: 30px;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-dark-grey {
+  color: #2b292b;
+}
+
+.text-grey {
+  color: #696469;
+}
+
+.text-light-grey {
+  color: #f5e6f5;
+}
+
+.text-dark-violet {
+  color: #492549;
+}
+
+.text-light-violet {
+  color: #7d407d;
+}
+
+.link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bg-black {
+  color: black;
+}
+
+.bg-white {
+  color: white;
+}
+
+.bg-dark-grey {
+  color: #2b292b;
+}
+
+.bg-grey {
+  color: #696469;
+}
+
+.bg-light-grey {
+  color: #f5e6f5;
+}
+
+.bg-dark-violet {
+  color: #492549;
+}
+
+.bg-light-violet {
+  color: #7d407d;
+}
+
+.site-navbar {
+  border: 0.3px solid rgba(200, 200, 200, 0.5);
+  border-radius: 15px;
+}
+
