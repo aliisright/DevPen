@@ -28,6 +28,11 @@
     <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" id="body" rows="10">Votre article ici...</textarea>
   </div>
 
+  <div class="form-group">
+    <label for="tag">Mots clés</label>
+    <input type="text" name="tag" class="form-control {{ $errors->has('tag') ? 'is-invalid' : '' }}" id="tag" placeholder="un mot clé">
+  </div>
+
   <div class="form-group text-center">
     <button type="submit" class="btn btn-dark">Publier</button>
   </div>

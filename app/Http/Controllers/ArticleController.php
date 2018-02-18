@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\StoreArticle;
 
 use Auth;
+
+use App\Tag;
+use App\ArticleTag;
 
 class ArticleController extends Controller
 {
@@ -42,14 +45,24 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(StoreArticle $request)
     {
-        Article::create([
+        $article = Article::create([
           'title' => $request['title'],
           'body' => $request['body'],
-          'user_id' => 1,
+          'user_id' => Auth::id(),
         ]);
-        return redirect()->back()->with('success', 'L\'article: '.$request['title'].' a bien été publié!');
+
+        $tag = Tag::firstOrCreate([
+          'name' => $request['tag'],
+        ]);
+
+        ArticleTag::create([
+          'article_id' => $article->id,
+          'tag_id' => $tag->id,
+        ]);
+
+        return redirect()->back()->with('success', 'L\'article: '.$article->title.' a bien été publié!');
     }
 
     /**

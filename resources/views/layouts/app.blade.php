@@ -26,12 +26,12 @@
 
           <ul class="list list-inline m-0">
             @guest
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Connexion</li></a>
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Inscription</li></a>
+              <a class="link" href="{{ Route('login') }}"><li class="font-text list-inline-item text-grey mx-2">Connexion</li></a>
+              <a class="link" href="{{ Route('register') }}"><li class="font-text list-inline-item text-grey mx-2">Inscription</li></a>
             @else
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Le Stream</li></a>
+              <a class="link" href="{{ Route('home') }}"><li class="font-text list-inline-item text-grey mx-2">Le Stream</li></a>
               <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Mon compte</li></a>
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Profile</li></a>
+              <a class="link" href="{{ Route('articles.index') }}"><li class="font-text list-inline-item text-grey mx-2">Profile</li></a>
               <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">{{Auth::user()->nickname}}</li></a>
 
 

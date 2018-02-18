@@ -6,9 +6,9 @@
       <hr>
       <p class="text-size-xs"><i>publié le {{ $article->created_at }}</i></p>
       <div class="d-flex flex-wrap">
-        <p class="badge badge-dark m-1">PHP</p>
-        <p class="badge badge-dark m-1">CSS</p>
-        <p class="badge badge-dark m-1">HTML</p>
+        @foreach($article->tags as $tag)
+          <p class="badge badge-dark m-1">{{ $tag->name }}</p>
+        @endforeach
       </div>
     </div>
   @endforeach
