@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Articles
+
+Route::get('/articles/browse', 'ArticleController@browse')->name('articles.browse');
+Route::resource('articles', 'ArticleController');
+
+//Profiles
+Route::resource('profiles', 'ProfileController', ['except' => ['index']]);
+Route::get('/{userName}', 'ProfileController@index')->name('profiles.index');
