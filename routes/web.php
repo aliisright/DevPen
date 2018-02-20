@@ -21,9 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Articles
 
-Route::get('/articles/browse', 'ArticleController@browse')->name('articles.browse');
-Route::resource('articles', 'ArticleController');
+Route::get('/articles/browse', 'ArticleController@browse')->name('articles.browse')->middleware('auth');
+Route::resource('articles', 'ArticleController')->middleware('auth');
 
 //Profiles
-Route::resource('profiles', 'ProfileController', ['except' => ['index']]);
-Route::get('/{userName}', 'ProfileController@index')->name('profiles.index');
+Route::resource('profiles', 'ProfileController', ['except' => ['index']])->middleware('auth');
+Route::get('/{userName}', 'ProfileController@index')->name('profiles.index')->middleware('auth');
+
+//Likes
+Route::resource('likes', 'LikeController')->middleware('auth');

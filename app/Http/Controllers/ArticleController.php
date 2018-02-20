@@ -26,7 +26,7 @@ class ArticleController extends Controller
     public function browse()
     {
         $articles = Auth::user()->articles()->get();
-        return view('articles.browse', ['userName' => 'aliisright', 'articles' => $articles]);
+        return view('articles.browse', ['articles' => $articles]);
     }
 
     /**
@@ -36,7 +36,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create', ['userName' => 'aliisright']);
+        return view('articles.create');
     }
 
     /**

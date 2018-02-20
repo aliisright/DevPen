@@ -163,3 +163,29 @@ body {
     top: 20%;
   }
 }
+
+.box {
+  @extend .site-navbar;
+  padding: 5px 10px;
+}
+
+//Articles
+.article-section {
+  white-space: pre-wrap;
+  p {
+    text-align: justify;
+    text-justify: distribute;
+  }
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 50px;
+
+  background-image: url("https://www.sheldon-cooper.fr/wp-content/uploads/2014/08/sheldon-cooper-personnage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}

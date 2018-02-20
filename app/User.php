@@ -34,4 +34,16 @@ class User extends Authenticatable
     public function articles() {
       return $this->hasMany('App\Article');
     }
+
+    public function followers() {
+      return $this->belongsToMany('App\FollowerFollowed', 'follower_followed', 'followed_id', 'follower_id');
+    }
+
+    public function followeds() {
+      return $this->belongsToMany('App\FollowerFollowed', 'follower_followed', 'follower_id', 'followed_id');
+    }
+
+    public function likes() {
+      return $this->hasMany('App\Like');
+    }
 }
