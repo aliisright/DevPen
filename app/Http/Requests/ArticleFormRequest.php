@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreArticle extends FormRequest
+class ArticleFormRequest extends FormRequest
 {
     protected $titleMax = 500;
     protected $bodyMin = 6;

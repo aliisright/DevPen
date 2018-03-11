@@ -1,5 +1,5 @@
-<form method="post" action="{{ route('articles.update') }}">
-  <p class="font-text text-size-l font-lighter text-grey">Publier un article</p>
+<form method="post" action="{{ Route('articles.update', [$article->id]) }}">
+  <p class="font-text text-size-l font-lighter text-grey">Modifier l'article: <strong>{{ $article->title }}</strong></p>
 
   @if($errors->any())
     <div>
@@ -29,8 +29,9 @@
   </div>
 
   <div class="form-group text-center">
-    <button type="submit" class="btn btn-dark">Publier</button>
+    <button type="submit" class="btn btn-dark">Enregistrer</button>
   </div>
 
-  {{ csrf_field() }}
+  @method('PUT')
+  @csrf
 </form>

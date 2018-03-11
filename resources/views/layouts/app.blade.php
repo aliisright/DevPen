@@ -17,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Patua+One:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 </head>
 <body>
+  @if(\Route::current()->getName() == 'articles.show')
+    @include('components.edit_box')
+  @endif
     <div id="app">
 
       <nav class="navbar">
@@ -26,21 +29,38 @@
 
           <ul class="list list-inline m-0">
             @guest
-              <a class="link" href="{{ Route('login') }}"><li class="font-text list-inline-item text-grey mx-2">Connexion</li></a>
-              <a class="link" href="{{ Route('register') }}"><li class="font-text list-inline-item text-grey mx-2">Inscription</li></a>
+              <a class="link" href="{{ Route('login') }}"><li class="font-text list-inline-item text-grey mx-2"><img src="{{ asset('icons/on_off.svg') }}" alt="connectez-vous" width="15px"> Connexion</li></a>
+
+              <a class="link" href="{{ Route('register') }}"><li class="font-text list-inline-item text-grey mx-2"><button class="btn btn-success py-0">Inscription</button></li></a>
             @else
-              <a class="link" href="{{ Route('home') }}"><li class="font-text list-inline-item text-grey mx-2">Le Stream</li></a>
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">Mon compte</li></a>
-              <a class="link" href="{{ Route('articles.index') }}"><li class="font-text list-inline-item text-grey mx-2">Profile</li></a>
-              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">{{Auth::user()->nickname}}</li></a>
+              <a class="link" href="{{ Route('articles.create') }}"><li class="font-text list-inline-item text-grey mx-2"><button class="btn bg-light-secondary text-white py-0">Créer un article</button></li></a>
+
+              <a class="link" href="{{ Route('home') }}" title="Le Stream"><li class="font-text list-inline-item text-grey mx-2"><img src="{{ asset('icons/stream.svg') }}" alt="Le stream" width="20px"></li></a>
+
+              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2"><img src="{{ asset('icons/documents.svg') }}" alt="Mes articles" width="20px"></li></a>
+
+              <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2"><img src="{{ asset('icons/settings.svg') }}" alt="Mon compte" width="20px"></li></a>
+
+              <li class="font-text list-inline-item text-grey mx-2 relative">
+                <a class="link dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><div class="navbar-profile-photo m-auto"></div></a>
+              </li>
 
 
-              <a class="link" href="{{ route('logout') }}"
-                     onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();"><li class="font-text list-inline-item text-grey mx-2">Logout
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form></li></a>
+              <!-- <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">{{Auth::user()->nickname}}</li></a> -->
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="link dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();"><li class="font-text list-inline-item text-grey mx-2">Logout
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form></li></a>
+              </div>
+
+
             @endguest
           </ul>
         </div>

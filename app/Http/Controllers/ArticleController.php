@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreArticle;
+use App\Http\Requests\ArticleFormRequest;
 
 use Auth;
 
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticle $request)
+    public function store(ArticleFormRequest $request)
     {
         $article = Article::create([
           'title' => $request['title'],
@@ -62,7 +62,7 @@ class ArticleController extends Controller
           'tag_id' => $tag->id,
         ]);
 
-        return redirect()->back()->with('success', 'L\'article: '.$article->title.' a bien été publié!');
+        return redirect()->back()->with('success', 'L\'article: " '.$article->title.'" a bien été publié!');
     }
 
     /**
@@ -94,7 +94,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleFormRequest $request)
     {
         //
     }
@@ -105,8 +105,10 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($articleId)
     {
-        //
+      Article::where('id', $articleId)->where('user_id', Auth::id())->firstOrFail()->delete();
+
+      return redirect()->back();
     }
 }

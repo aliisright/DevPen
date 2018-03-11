@@ -26,7 +26,7 @@ Route::resource('articles', 'ArticleController')->middleware('auth');
 
 //Profiles
 Route::resource('profiles', 'ProfileController', ['except' => ['index']])->middleware('auth');
-Route::get('/{userName}', 'ProfileController@index')->name('profiles.index')->middleware('auth');
+Route::get('/{nickname}', 'ProfileController@index')->name('profiles.index')->middleware('auth');
 
 //Likes
 Route::resource('likes', 'LikeController')->middleware('auth');

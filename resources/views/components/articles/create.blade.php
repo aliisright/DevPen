@@ -37,5 +37,5 @@
     <button type="submit" class="btn btn-dark">Publier</button>
   </div>
 
-  {{ csrf_field() }}
+  @csrf
 </form>

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileFormRequest;
+
+use App\User;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -12,9 +16,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($userName)
+    public function index($nickname)
     {
-        return view('profiles.index', ['userName' => $userName]);
+        $user = User::where('nickname', $nickname)->firstOrFail();
+
+        return view('profiles.index', ['user' => $user]);
     }
 
     /**
@@ -33,9 +39,18 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfileFormRequest $request)
     {
-        //
+        $profile = Profile::create([
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'birth_date' => $request['birth_date'],
+            'location' => $request['location'],
+            'description' => $request['description'],
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Votre profile a bien été créé!');
     }
 
     /**
@@ -55,9 +70,9 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit($userId)
     {
-        //
+        return view('profiles.edit', ['userId' => $userId]);
     }
 
     /**
@@ -67,9 +82,18 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(ProfileFormRequest $request, $userId)
     {
-        //
+        $profile = Profile::where('user_id', $userId)->firstOrFail();
+        $profile->first_name = $request['first_name'];
+        $profile->last_name = $request['last_name'];
+        $profile->birth_date = date('Y-m-d H:i', strtotime($request['birth_date'].' 00:00:00'));
+        $profile->location = $request['location'];
+        $profile->description = $request['description'];
+
+        $profile->update();
+
+        return redirect()->back()->with('success', 'Votre profile a été mis à jour!');
     }
 
     /**
