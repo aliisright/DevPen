@@ -25,7 +25,7 @@
       <nav class="navbar">
         <div class="site-navbar container d-flex justify-content-between align-items-center">
 
-          <a class="link" href="#"><h1 class="text-size-l font-title text-dark-grey m-0">DevInk</h1></a>
+          <a class="link" href="{{ Route('home') }}"><h1 class="text-size-l font-title text-dark-grey m-0">DevInk</h1></a>
 
           <ul class="list list-inline m-0">
             @guest

@@ -28,8 +28,8 @@ class UpdateArticle extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'string|max:'.$this->titleMax,
-          'body' => 'string|min:'.$this->bodyMin,
+          'title' => 'required|string|max:'.$this->titleMax,
+          'body' => 'required|string|min:'.$this->bodyMin,
           'tag' => 'string|max:'.$this->tagMax,
         ];
     }
@@ -37,7 +37,9 @@ class UpdateArticle extends FormRequest
     public function messages()
     {
         return [
+            'title.required' => 'Le titre est obligatoire, merci de remplir ce champ',
             'title.max' => 'Le titre ne peut pas dépasser '.$this->titleMax.' caractères',
+            'body.required' => 'Le corps de l\'article est obligatoire, merci de remplir ce champ',
             'body.min' => 'L\'article doit avoir au moins '.$this->bodyMin.' caractères',
             'tag.max' => 'Le mot clé ne peut pas dépasser '.$this->tagMax.' caractères',
         ];

@@ -83,9 +83,10 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($articleId)
     {
-        //
+        $article = Article::findOrFail($articleId);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
@@ -95,9 +96,19 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateArticle $data)
+    public function update(UpdateArticle $data, $articleId)
     {
-        //
+        $article = Article::findOrFail($articleId);
+
+        if($article->user_id == Auth::id()) {
+          $article->title = $data['title'];
+          $article->body = $data['body'];
+          $article->update();
+
+          return redirect()->back()->with('success', 'L\'article: " '.$article->title.'" a bien été mis à jour!');
+        } else {
+          return redirect()->back();
+        }
     }
 
     /**
@@ -108,8 +119,21 @@ class ArticleController extends Controller
      */
     public function destroy($articleId)
     {
-      Article::where('id', $articleId)->where('user_id', Auth::id())->firstOrFail()->delete();
-
-      return redirect()->back();
+        $article = Article::where('id', $articleId);
+        $article->forceDelete();
+        return redirect()->back();
     }
+
+    public function softDelete($articleId) {
+        $article = Article::where('id', $articleId)->firstOrFail();
+        $article->delete();
+        return redirect()->back();
+    }
+
+    public function restore($articleId) {
+        $article = Article::where('id', $articleId);
+        $article->restore();
+        return redirect()->back();
+    }
+
 }

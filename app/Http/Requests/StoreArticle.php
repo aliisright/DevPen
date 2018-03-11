@@ -37,10 +37,10 @@ class StoreArticle extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Le titre est obligatoire, merci de remplir ce champs',
+            'title.required' => 'Le titre est obligatoire, merci de remplir ce champ',
             'title.max' => 'Le titre ne peut pas dépasser '.$this->titleMax.' caractères',
             'body.min' => 'L\'article doit avoir au moins '.$this->bodyMin.' caractères',
-            'body.required'  => 'Le corps de votre article est obligatoire, merci de remplir ce champs',
+            'body.required'  => 'Le corps de votre article est obligatoire, merci de remplir ce champ',
             'tag.max' => 'Le mot clé ne peut pas dépasser '.$this->tagMax.' caractères',
         ];
     }

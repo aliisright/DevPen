@@ -15,10 +15,10 @@ class AddForeignKeyToFollowerFollowedTable extends Migration
     {
         Schema::table('follower_followed', function (Blueprint $table) {
           $table->integer('follower_id')->unsigned()->index();
-          $table->foreign('follower_id')->references('id')->on('users');
+          $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');
 
           $table->integer('followed_id')->unsigned()->index();
-          $table->foreign('followed_id')->references('id')->on('users');
+          $table->foreign('followed_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

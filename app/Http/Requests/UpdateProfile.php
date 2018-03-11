@@ -35,8 +35,11 @@ class UpdateProfile extends FormRequest
     public function messages()
     {
         return [
+            'first_name.required' => 'Le prénom est obligatoire, merci de remplir ce champ',
             'first_name.min' => 'Le prénom doit avoir au moins 2 caractères',
+            'last_name.required' => 'Le nom est obligatoire, merci de remplir ce champ',
             'birth_date.date_format' => 'La date de naissance avoir le format jj/mm/aaaa (ex: écrire 01/07/1993 pour le 1er juillet 1993)',
+            'location.required' => 'La localisation est obligatoire, merci de remplir ce champ',
         ];
     }
 }

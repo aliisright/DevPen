@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProfile;
 use App\Http\Requests\UpdateProfile;
 
 use App\User;
+use App\Article;
 use Auth;
 
 class ProfileController extends Controller
@@ -73,7 +74,7 @@ class ProfileController extends Controller
      */
     public function edit($userId)
     {
-        $user = User::find($userId)->firstOrFail();
+        $user = User::findOrFail($userId);
         return view('profiles.edit', ['user' => $user]);
     }
 
@@ -107,5 +108,12 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    public function profileArticles($nickname) {
+        $user = User::where('nickname', $nickname)->firstOrFail();
+        $activeArticles = Article::where('user_id', $user->id)->get();
+        $deletedArticles = Article::onlyTrashed()->where('user_id', $user->id)->get();
+        return view('profiles.articles', ['user' => $user, 'activeArticles' => $activeArticles, 'deletedArticles' => $deletedArticles]);
     }
 }

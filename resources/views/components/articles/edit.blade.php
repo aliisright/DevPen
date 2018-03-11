@@ -20,16 +20,16 @@
 
   <div class="form-group">
     <label for="title">Titre</label>
-    <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" id="title" placeholder="le titre de votre article">
+    <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" id="title" value="{{ $article->title }}">
   </div>
 
   <div class="form-group">
     <label for="body"></label>
-    <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" id="body" rows="10">Votre article ici...</textarea>
+    <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" id="body" rows="10">{{ $article->body }}</textarea>
   </div>
 
   <div class="form-group text-center">
-    <button type="submit" class="btn btn-dark">Enregistrer</button>
+    <button type="submit" class="btn btn-dark">Enregistrer les modification</button>
   </div>
 
   @method('PUT')

@@ -118,6 +118,23 @@ body {
   right:5%;
 }
 
+//tools
+.tool-icon {
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+  border: 0.5px solid rgb(200, 200, 200);
+  border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border: 0.5px solid rgb(105, 100, 105);
+  }
+}
+
 //Footer
 .site-footer {
   text-align: center;
@@ -152,6 +169,7 @@ body {
   border: 3px solid lightgrey;
   @extend .text-white;
   @extend .font-title;
+  width: 50px;
   height: 50px;
   padding: 0 5px;
   position: relative;

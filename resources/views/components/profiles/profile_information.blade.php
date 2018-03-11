@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <h1 class="font-text text-size-m font-light text-grey">Mon profil</h1>
+    <h1 class="font-text text-size-m font-light text-grey">Mon profil <a class="float-right tool-icon" href="{{ Route('profiles.edit', [Auth::id()]) }}"><img src="{{ asset('icons/pencil.svg') }}" alt="connectez-vous" width="15px"></a></h1>
     <table class="table table-unbordered">
           <tr>
             <th>

@@ -9,7 +9,6 @@
       @if(!isset($user->profile))
         @include('components.profiles.create')
       @else
-        <a href="{{ Route('profiles.edit', [Auth::id()]) }}">edit</a>
         @include('components.profiles.profile_information')
       @endif
     @else
