@@ -52,7 +52,7 @@
               <h3 class="font-text text-size-s">Date de naissance</h3>
             </th>
             <td>
-              <h1 class="font-text text-size-s">{{ $user->profile->birth_date }}</h1>
+              <h1 class="font-text text-size-s">{{ date("d/m/Y", strtotime($user->profile->birth_date)) }}</h1>
             </td>
           </tr>
     </table>

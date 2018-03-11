@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticleFormRequest extends FormRequest
+class UpdateArticle extends FormRequest
 {
     protected $titleMax = 500;
     protected $bodyMin = 6;
@@ -28,8 +28,8 @@ class ArticleFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|string|max:'.$this->titleMax,
-          'body' => 'required|string|min:'.$this->bodyMin,
+          'title' => 'string|max:'.$this->titleMax,
+          'body' => 'string|min:'.$this->bodyMin,
           'tag' => 'string|max:'.$this->tagMax,
         ];
     }
@@ -37,10 +37,8 @@ class ArticleFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Le titre est obligatoire, merci de remplir ce champs',
             'title.max' => 'Le titre ne peut pas dépasser '.$this->titleMax.' caractères',
             'body.min' => 'L\'article doit avoir au moins '.$this->bodyMin.' caractères',
-            'body.required'  => 'Le corps de votre article est obligatoire, merci de remplir ce champs',
             'tag.max' => 'Le mot clé ne peut pas dépasser '.$this->tagMax.' caractères',
         ];
     }

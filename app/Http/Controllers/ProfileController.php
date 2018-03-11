@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileFormRequest;
+use App\Http\Requests\StoreProfile;
+use App\Http\Requests\UpdateProfile;
 
 use App\User;
 use Auth;
@@ -39,14 +40,14 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProfileFormRequest $request)
+    public function store(StoreProfile $data)
     {
         $profile = Profile::create([
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
-            'birth_date' => $request['birth_date'],
-            'location' => $request['location'],
-            'description' => $request['description'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'birth_date' => date('Y-m-d', strtotime($data['birth_date'])),
+            'location' => $data['location'],
+            'description' => $data['description'],
             'user_id' => Auth::id(),
         ]);
 
@@ -72,7 +73,8 @@ class ProfileController extends Controller
      */
     public function edit($userId)
     {
-        return view('profiles.edit', ['userId' => $userId]);
+        $user = User::find($userId)->firstOrFail();
+        return view('profiles.edit', ['user' => $user]);
     }
 
     /**
@@ -82,14 +84,14 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileFormRequest $request, $userId)
+    public function update(UpdateProfile $data, $userId)
     {
         $profile = Profile::where('user_id', $userId)->firstOrFail();
-        $profile->first_name = $request['first_name'];
-        $profile->last_name = $request['last_name'];
-        $profile->birth_date = date('Y-m-d H:i', strtotime($request['birth_date'].' 00:00:00'));
-        $profile->location = $request['location'];
-        $profile->description = $request['description'];
+        $profile->first_name = $data['first_name'];
+        $profile->last_name = $data['last_name'];
+        $profile->birth_date = date('Y-d-m', strtotime($data['birth_date']));
+        $profile->location = $data['location'];
+        $profile->description = $data['description'];
 
         $profile->update();
 

@@ -9,7 +9,7 @@
       @endif
       <a href="{{ Route('articles.show', [$article]) }}" title="{{ $article->title }}" class="link"><h1 class="text-size-l">{{ str_limit($article->title, 50, ' ...') }}</h1></a>
       <hr>
-      <p class="text-size-xs"><i>publié le {{ $article->created_at }}</i></p>
+      <p class="text-size-xs"><i>publié le {{ date("d/m/Y", strtotime($article->created_at)) }}</i></p>
       <div class="d-flex flex-wrap">
         @foreach($article->tags as $tag)
           <p class="badge badge-dark m-1">{{ $tag->name }}</p>

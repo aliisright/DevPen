@@ -132,6 +132,11 @@ body {
   border-radius: 15px;
 }
 
+.navbar-profile-photo-menu {
+  left: inherit;
+  right: 5%;
+}
+
 .site-footer {
   text-align: center;
 }

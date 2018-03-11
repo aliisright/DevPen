@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-use App\Http\Requests\ArticleFormRequest;
+use App\Http\Requests\StoreArticle;
+use App\Http\Requests\UpdateArticle;
 
 use Auth;
 
@@ -45,16 +46,16 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleFormRequest $request)
+    public function store(StoreArticle $data)
     {
         $article = Article::create([
-          'title' => $request['title'],
-          'body' => $request['body'],
+          'title' => $data['title'],
+          'body' => $data['body'],
           'user_id' => Auth::id(),
         ]);
 
         $tag = Tag::firstOrCreate([
-          'name' => $request['tag'],
+          'name' => $data['tag'],
         ]);
 
         ArticleTag::create([
@@ -94,7 +95,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleFormRequest $request)
+    public function update(UpdateArticle $data)
     {
         //
     }

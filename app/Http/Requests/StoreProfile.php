@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileFormRequest extends FormRequest
+class StoreProfile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class ProfileFormRequest extends FormRequest
             'birth_date' => 'required|date_format:d/m/Y',
             'location' => 'required|string',
             'description' => 'nullable',
-            'user_id' => 'unique',
+            'user_id' => 'unique:profiles',
         ];
     }
 

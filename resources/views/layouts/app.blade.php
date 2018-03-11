@@ -9,10 +9,10 @@
 
     <title>{{ config('app.name') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Patua+One:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 </head>
@@ -41,16 +41,12 @@
 
               <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2"><img src="{{ asset('icons/settings.svg') }}" alt="Mon compte" width="20px"></li></a>
 
-              <li class="font-text list-inline-item text-grey mx-2 relative">
-                <a class="link dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><div class="navbar-profile-photo m-auto"></div></a>
-              </li>
+              <a class="link dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><li class="font-text list-inline-item text-grey mx-2"><div class="navbar-profile-photo m-auto"></div>
+              </li></a>
 
-
-              <!-- <a class="link" href="#"><li class="font-text list-inline-item text-grey mx-2">{{Auth::user()->nickname}}</li></a> -->
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-menu navbar-profile-photo-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{{ Route('profiles.index', [Auth::user()->nickname]) }}">Mon profil</a>
+                <a class="dropdown-item" href="#">Réglages</a>
                 <a class="dropdown-item" href="#">Something else here</a>
                 <a class="link dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
